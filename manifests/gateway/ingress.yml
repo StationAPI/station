@@ -10,6 +10,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: fc-gateway
+                name: station-gateway
                 port:
                   number: 1338

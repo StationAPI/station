@@ -28,7 +28,7 @@ spec:
             - name: DSN
               valueFrom:
                 secretKeyRef:
-                  name: planetscale-dsn
+                  name: neon-dsn
                   key: dsn
                   optional: false
       volumes:
