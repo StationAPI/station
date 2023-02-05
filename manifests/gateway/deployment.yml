@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: station-gateway
+  labels:
+    app: station-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: station-gateway
+  template:
+    metadata:
+      labels:
+        app: station-gateway
+    spec:
+      containers:
+        - name: station-gateway
+          image: sthanguy/fc-gateway
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000

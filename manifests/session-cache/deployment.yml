@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: station-session-cache
+  labels:
+    app: station-session-cache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: station-session-cache
+  template:
+    metadata:
+      labels:
+        app: station-session-cache
+    spec:
+      containers:
+        - name: station-session-cache
+          image: sthanguy/fc-session-cache:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3005

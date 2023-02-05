@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: station-gateway
+spec:
+  selector:
+    app: station-gateway
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 1337
+      targetPort: 3000

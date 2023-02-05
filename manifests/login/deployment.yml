@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: station-login
+  labels:
+    app: station-login
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: station-login
+  template:
+    metadata:
+      labels:
+        app: station-login
+    spec:
+      containers:
+        - name: station-login
+          image: sthanguy/station-login:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: gh
+              mountPath: "/home/nonroot/route/config/gh"
+              readOnly: true
+          env:
+            - name: DSN
+              valueFrom:
+                secretKeyRef:
+                  name: planetscale-dsn
+                  key: dsn
+                  optional: false
+      volumes:
+        - name: gh
+          secret:
+            secretName: github-auth-secret
+            items:
+              - key: id
+                path: id
+              - key: secret
+                path: secret
