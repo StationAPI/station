@@ -4,7 +4,8 @@ metadata:
   name: gateway
 spec:
   rules:
-    - http:
+    - host: "*ferretcode.cloud.okteto.net
+      http:
         paths:
           - path: /
             pathType: Prefix
