@@ -1,5 +1,7 @@
 load('ext://restart_process', 'docker_build_with_restart')
 
+allow_k8s_contexts('cloud_okteto_com')
+
 docker_build_with_restart('sthanguy/station-login',
 							context='../station-login',
 							entrypoint='go run main.go',
