@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: station-image-bucket
+  labels:
+    app: station-image-bucket
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: station-image-bucket
+  template:
+    metadata:
+      labels:
+        app: station-image-bucket
+    spec:
+      containers:
+        - name: station-image-bucket
+          image: sthanguy/station-image-bucket:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: bucket
+              mountPath: "/home/nonroot/service/config/bucket"
+              readOnly: true
+          env:
+            - name: DSN
+              valueFrom:
+                secretKeyRef:
+                  name: neon-dsn
+                  key: dsn
+                  optional: false
+      volumes:
+        - name: bucket
+          secret:
+            secretName: bucket-secret
