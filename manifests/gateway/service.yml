@@ -6,6 +6,7 @@ spec:
   selector:
     app: station-gateway
   type: LoadBalancer
+  loadBalancerIP: 195.154.71.170
   ports:
     - protocol: TCP
       port: 3000
