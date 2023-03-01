@@ -23,6 +23,16 @@ docker_build_with_restart('sthanguy/station-gateway',
 							]
 )
 
+docker_build_with_restart('sthanguy/station-image-bucket',
+							context='../station-image-bucket',
+							entrypoint='python3 main.py',
+							dockerfile='../station-image-bucket/Dockerfile',
+							extra_tag='latest',
+							live_update=[
+								sync('../station-image-bucket', '/home/nonroot/route'),
+							]
+)
+
 k8s_yaml(['manifests/login/deployment.yml', 'manifests/login/service.yml'])
 k8s_yaml(['manifests/gateway/deployment.yml', 'manifests/gateway/service.yml', 'manifests/gateway/ingress.yml'])
 k8s_yaml(['manifests/session-cache/deployment.yml', 'manifests/session-cache/service.yml'])
