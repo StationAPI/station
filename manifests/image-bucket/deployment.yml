@@ -21,8 +21,8 @@ spec:
           ports:
             - containerPort: 3000
           volumeMounts:
-            - name: bucket
-              mountPath: "/home/nonroot/service/config/bucket"
+            - name: firebase
+              mountPath: "/home/nonroot/service/config/firebase"
               readOnly: true
           env:
             - name: DSN
@@ -32,6 +32,6 @@ spec:
                   key: dsn
                   optional: false
       volumes:
-        - name: bucket
+        - name: firebase
           secret:
-            secretName: bucket-secret
+            secretName: station-firebase
