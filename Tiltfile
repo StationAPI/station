@@ -37,7 +37,7 @@ docker_build_with_restart('sthanguy/station-image-bucket',
 
 docker_build_with_restart('sthanguy/station-tag-aggregator',
 							context='../station-tag-aggregator',
-							entrypoint='gleam run',
+							entrypoint='go run main.go',
 							dockerfile='../station-tag-aggregator/Dockerfile',
 							extra_tag='latest',
 							live_update=[

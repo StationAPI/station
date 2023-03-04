@@ -27,3 +27,9 @@ spec:
                   name: neon-dsn
                   key: dsn
                   optional: false
+            - name: ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: tag-aggregator-token
+                  key: token
+                  optional: false
