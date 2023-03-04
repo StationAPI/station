@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: station-tag-aggregator
+  labels:
+    app: station-tag-aggregator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: station-tag-aggregator
+  template:
+    metadata:
+      labels:
+        app: station-tag-aggregator
+    spec:
+      containers:
+        - name: station-tag-aggregator
+          image: sthanguy/station-tag-aggregator:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DSN
+              valueFrom:
+                secretKeyRef:
+                  name: neon-dsn
+                  key: dsn
+                  optional: false
