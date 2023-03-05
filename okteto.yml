@@ -1,4 +1,0 @@
-deploy:
-- kubectl apply -f manifests/gateway
-- kubectl apply -f manifests/session-cache
-- kubectl apply -f manifests/login
