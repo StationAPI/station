@@ -45,6 +45,17 @@ docker_build_with_restart('sthanguy/station-tag-aggregator',
 							]
 )
 
+docker_build_with_restart('sthanguy/station-upload',
+							context='../station-upload',
+							entrypoint='go run main.go',
+							dockerfile='../station-upload/Dockerfile',
+							extra_tag='latest',
+							live_update=[
+								sync('../station-upload', '/home/nonroot/route'),
+							]
+)
+
+
 
 
 k8s_yaml(['manifests/login/deployment.yml', 'manifests/login/service.yml'])
