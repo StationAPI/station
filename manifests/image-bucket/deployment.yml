@@ -20,10 +20,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
-          volumeMounts:
-            - name: firebase
-              mountPath: "/home/nonroot/service/config/firebase"
-              readOnly: true
           env:
             - name: DSN
               valueFrom:
@@ -31,7 +27,18 @@ spec:
                   name: neon-dsn
                   key: dsn
                   optional: false
-      volumes:
-        - name: firebase
-          secret:
-            secretName: station-firebase
+            - name: STORJ_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: storj
+                  key: access
+                  optional: false
+            - name: STORJ_UPLOAD_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: storj
+                  key: secret
+                  optional: false
+  
+
+  
