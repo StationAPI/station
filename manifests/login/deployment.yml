@@ -35,6 +35,8 @@ spec:
               value: 195.154.71.170
             - name: CALLBACK_URL_PORT
               value: 3000
+            - name: COOKIE_DOMAIN
+              value: statn.space
       volumes:
         - name: gh
           secret:
