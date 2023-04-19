@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: station-search
+  labels:
+    app: station-search
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: station-search
+  template:
+    metadata:
+      labels:
+        app: station-search
+    spec:
+      containers:
+        - name: station-search
+          image: sthanguy/station-search:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DSN
+              valueFrom:
+                secretKeyRef:
+                  name: neon-dsn
+                  key: dsn
+                  optional: false

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: station-ranking
+  labels:
+    app: station-ranking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: station-ranking
+  template:
+    metadata:
+      labels:
+        app: station-ranking
+    spec:
+      containers:
+        - name: station-ranking
+          image: sthanguy/station-ranking:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DSN
+              valueFrom:
+                secretKeyRef:
+                  name: neon-dsn
+                  key: dsn
+                  optional: false

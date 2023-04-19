@@ -32,7 +32,7 @@ spec:
                   key: dsn
                   optional: false
             - name: CALLBACK_URL_HOST
-              value: 195.154.71.170
+              value: "195.154.71.170"
             - name: CALLBACK_URL_PORT
               value: 3000
             - name: COOKIE_DOMAIN

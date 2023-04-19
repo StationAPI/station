@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: station-ranking
+  labels:
+    run: station-ranking
+spec:
+  ports:
+    - port: 3000
+      protocol: TCP
+  selector:
+    app: station-ranking

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: station-upload
+  labels:
+    app: station-upload
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: station-upload
+  template:
+    metadata:
+      labels:
+        app: station-upload
+    spec:
+      containers:
+        - name: station-upload
+          image: sthanguy/station-upload:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DSN
+              valueFrom:
+                secretKeyRef:
+                  name: neon-dsn
+                  key: dsn
+                  optional: false
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: memphis
+                  key: user
+                  optional: false
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: memphis
+                  key: token
+                  optional: false
