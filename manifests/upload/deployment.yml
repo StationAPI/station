@@ -27,3 +27,15 @@ spec:
                   name: neon-dsn
                   key: dsn
                   optional: false
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: memphis
+                  key: user
+                  optional: false
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: memphis
+                  key: token
+                  optional: false

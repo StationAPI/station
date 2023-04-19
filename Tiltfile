@@ -59,6 +59,7 @@ docker_build_with_restart('sthanguy/station-upload',
 
 
 k8s_yaml(['manifests/login/deployment.yml', 'manifests/login/service.yml'])
+k8s_yaml(['manifests/upload/deployment.yml', 'manifests/upload/service.yml'])
 k8s_yaml(['manifests/gateway/deployment.yml', 'manifests/gateway/service.yml', 'manifests/gateway/ingress.yml'])
 k8s_yaml(['manifests/session-cache/deployment.yml', 'manifests/session-cache/service.yml'])
 k8s_yaml(['manifests/tag-aggregator/deployment.yml', 'manifests/tag-aggregator/service.yml'])
