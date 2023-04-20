@@ -1,6 +1,6 @@
 load('ext://restart_process', 'docker_build_with_restart')
 
-allow_k8s_contexts('admin@station-dev')
+allow_k8s_contexts('station')
 
 docker_build_with_restart('sthanguy/station-login',
 							context='../station-login',
